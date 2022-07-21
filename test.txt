@@ -1,0 +1,22 @@
+script=document.createElement('script')
+script.src='https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js';
+document.body.appendChild(script)
+
+$(document.body).append('<input type="file" id="file1">')
+$(document.body).append('<input type="file" id="file2">')
+$(document.body).append('<input type="file" id="file3">')
+$(document.body).append('<input type="file" id="file4">')
+$(document.body).append('<input type="file" id="file5">')
+$(document.body).append('<input type="file" id="file6">')
+$(document.body).append('<input type="file" id="file7">')
+
+formdata= new FormData()
+formdata.append('templateFile', $('#file1')[0].files[0])
+formdata.append('styleLabelFile', $('#file2')[0].files[0])
+formdata.append('pageConfigFile', $('#file3')[0].files[0])
+formdata.append('drawShapeParamsFile', $('#file4')[0].files[0])
+formdata.append('pageXmlFile', $('#file5')[0].files[0])
+formdata.append('contentXmlFile', $('#file6')[0].files[0])
+formdata.append('validatorFile', $('#file7')[0].files[0])
+
+$.ajax({url: "http://localhost:8080/convert/", type:"POST", data: formdata, contentType: false,success:function(ret){ console.log(ret)}, processData: false})

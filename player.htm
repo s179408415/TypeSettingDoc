@@ -1,0 +1,38 @@
+<!-- Copyright 1998-2019 Epic Games, Inc. All Rights Reserved. -->
+<!DOCTYPE HTML>
+<html>
+<head>
+	<script src="socket.io.js"></script>
+	<script>
+	//	socket = io('http://localhost:8080/');
+	//	socket.on('connect',()=>{
+	//		socket.emit('viewProgress',55);
+	//	});
+	//	socket.on('error',()=>{});
+	//	socket.on('disconnect',()=>{});
+	//	socket.on('updateProgress',id=>{
+	//		console.log(id)
+	//	});
+		
+var ws = new WebSocket("ws://localhost:8080/");
+ 
+ws.onopen = function(evt) {
+	console.log("Connection open ...");
+	ws.send(JSON.stringify({cmd: 0, data: {id:1}}));
+};
+ 
+ws.onmessage = function(evt) {
+	console.log("Received Message: " + JSON.stringify(evt.data));
+	ws.close();
+};
+ 
+ws.onclose = function(evt) {
+	console.log("Connection closed.");
+}
+	</script>
+</head>
+
+<body>
+</body>
+	
+</html>
